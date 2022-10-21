@@ -110,7 +110,7 @@ jobs:
             npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
   destroy-environment:
-    description: Destroy back-end and front-end cloudformation stacks given a workflow ID.
+    description: Destroy back-end and front-end cloudformation stacks given a workflow ID
     parameters:
       Workflow_ID:
         type: string
