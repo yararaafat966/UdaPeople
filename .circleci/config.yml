@@ -115,7 +115,7 @@ jobs:
     steps:
       - checkout
       - run:
-        name: install depen
+          name: install depen
           command: |
             yum install -y tar gzip 
       - run:
