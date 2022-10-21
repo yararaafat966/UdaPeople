@@ -4,18 +4,18 @@ command:
     description: Install AWS CLI v2
       steps:
         - run:
-          name: Install AWS CLI v2
-          command: |
-            curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-            unzip awscliv2.zip
-            sudo ./aws/install
+            name: Install AWS CLI v2
+            command: |
+              curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+              unzip awscliv2.zip
+              sudo ./aws/install
   install_ansible:
     description: Install Ansible
       steps:
         - run:
-          name: Install Ansible
-          command: |
-            python3 -m pip install --user ansible
+            name: Install Ansible
+            command: |
+              python3 -m pip install --user ansible
 jobs:
   build-frontend:
     docker:
@@ -131,6 +131,19 @@ jobs:
             --stack-name "udapeople-frontend-${CIRCLE_WORKFLOW_ID:0:7}" \
             --parameter-overrides ID="${CIRCLE_WORKFLOW_ID:0:7}" \
             --tags project=udapeople
+      - run:
+          name: Add back-end ip to ansible inventory
+          command: |
+            BACKEND_PUBLIC_IP=$(aws ec2 describe-instances \
+            --filters "Name=tag:Name,Values=backend-${CIRCLE_WORKFLOW_ID:0:7}" \
+            --query 'Reservations[*].Instances[*].PublicIpAddress' \
+            --output text)
+            echo $BACKEND_PUBLIC_IP >> .circleci/ansible/inventory.txt
+            cat .circleci/ansible/inventory.txt 
+      - persist_to_workspace:
+          root: ~/
+          paths:
+            - project/.circleci/ansible/inventory.txt
 workflow:
   default:
     jobs:
