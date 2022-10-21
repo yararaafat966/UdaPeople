@@ -120,8 +120,7 @@ jobs:
           name: Destroy environments
           when: on_fail
           command: |
-            aws s3 rm s3://udapeople<<parameters.Workflow_ID>> --recursive
-            aws cloudformation delete-stack --stack-name udapeople-frontend- << parameters.Workflow_ID >>
+            aws cloudformation delete-stack --stack-name udapeople-frontend-
             aws cloudformation delete-stack --stack-name udapeople-backend- << parameters.Workflow_ID >>
 
   deploy-infrastructure:
@@ -163,6 +162,22 @@ jobs:
           paths:
           - project/.circleci/ansible/inventory.txt
       - destroy-environment
+  configure-infrastructure:
+    docker:
+      - image: cimg/base:stable
+    steps:
+      - checkout
+      - install_ansible
+      - add_ssh_keys:
+          fingerprints: ["1e:1a:bf:2c:ea:f6:ef:ea:d7:70:5a:f2:3d:d0:e3:d2"]
+      - attach_workspace:
+          at: ~/
+      - run:
+          name: Configure server
+          command: |
+            cd .circleci/ansible
+            cat inventory.txt
+            ansible-playbook -i inventory.txt configure-server.yml
 workflows:
   default:
     jobs:
