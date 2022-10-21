@@ -110,6 +110,7 @@ jobs:
             npm audit fix --force --audit-level=critical
             npm audit --audit-level=critical
   destroy-environment:
+    machine: true
     description: Destroy back-end and front-end cloudformation stacks given a workflow ID
     parameters:
       Workflow_ID:
@@ -120,8 +121,14 @@ jobs:
           name: Destroy environments
           when: on_fail
           command: |
-            aws cloudformation delete-stack --stack-name udapeople-frontend-
-            aws cloudformation delete-stack --stack-name udapeople-backend- << parameters.Workflow_ID >>
+          # Empty frontend bucket
+            aws s3 rm s3://udapeople-<<parameters.Workflow_ID>> --recursive
+
+          # Delete frontend stack
+            aws cloudformation delete-stack --stack-name udapeople-frontend-<< parameters.Workflow_ID >>
+
+          # Delete backend stack
+            aws cloudformation delete-stack --stack-name udapeople-backend-<< parameters.Workflow_ID >>
 
   deploy-infrastructure:
     docker:
