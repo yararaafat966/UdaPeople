@@ -113,7 +113,11 @@ jobs:
     docker:
       - image: amazon/aws-cli
     steps:
-      - checkout 
+      - checkout
+      - run:
+        name: install depen
+          command: |
+            yum install -y tar gzip 
       - run:
           name: Ensure back-end infrastructure exists
           command: |
@@ -142,7 +146,7 @@ jobs:
       - persist_to_workspace:
           root: ~/
           paths:
-            - project/.circleci/ansible/inventory.txt
+          - project/.circleci/ansible/inventory.txt
 workflows:
   default:
     jobs:
