@@ -144,7 +144,7 @@ jobs:
           root: ~/
           paths:
             - project/.circleci/ansible/inventory.txt
-workflow:
+workflows:
   default:
     jobs:
       - build-frontend
