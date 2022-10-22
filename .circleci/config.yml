@@ -231,8 +231,7 @@ jobs:
             export TYPEORM_MIGRATIONS_DIR=./src/migrations
             export TYPEORM_ENTITIES=./src/modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./src/migrations/*.ts
-            npm cache clean --force
-            npm cache verify --force
+            npm cache verify 
             rm -rf node_modules
             rm package-lock.json 
             npm upgrade --force
