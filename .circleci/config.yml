@@ -236,6 +236,7 @@ jobs:
             rm package-lock.json 
             npm upgrade --force
             npm install
+            npm audit fix
             npm run migrations > migrations_dump.txt
             cat migrations_dump.txt
       - run:
