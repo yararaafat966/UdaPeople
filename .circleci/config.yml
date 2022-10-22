@@ -219,10 +219,6 @@ jobs:
       - image: cimg/node:13.8.0 
     steps:
       - checkout
-      - run: 
-          name: istall zip
-          command: |
-            yum install -y tar gzip zip
       - run:
           name: Run migrations
           command: |
