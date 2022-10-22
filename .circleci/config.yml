@@ -216,10 +216,13 @@ jobs:
       - destroy-environment
   run-migrations:
     docker:
-      - image: amazon/aws-cli 
+      - image: cimg/node:13.8.0 
     steps:
       - checkout
-      - install_nodejs
+      - run: 
+          name: istall zip
+          command: |
+            yum install -y tar gzip zip
       - run:
           name: Run migrations
           command: |
