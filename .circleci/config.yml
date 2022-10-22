@@ -226,7 +226,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            npm cache clean -f
+            npm cache clean --force
             rm -rf node_modules
             rm package-lock.json 
             npm install
