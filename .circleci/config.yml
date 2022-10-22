@@ -226,7 +226,7 @@ jobs:
           name: Run migrations
           command: |
             cd backend
-            npm cache clean –force
+            npm cache clean -f
             rm -rf node_modules
             rm package-lock.json && rm npm-shrinkwrap.json
             npm install
