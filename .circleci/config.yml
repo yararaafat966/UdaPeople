@@ -231,7 +231,8 @@ jobs:
             export TYPEORM_MIGRATIONS_DIR=./src/migrations
             export TYPEORM_ENTITIES=./src/modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./src/migrations/*.ts
-            npm cache clean --force
+            npm run setup
+            npm start -s
             npm install
             npm run migrations > migrations_dump.txt
             cat migrations_dump.txt
