@@ -163,6 +163,7 @@ jobs:
       - image: amazon/aws-cli
     steps:
       - checkout
+      - install_awscli
       - run:
           name: install depen
           command: |
@@ -218,6 +219,8 @@ jobs:
     docker:
       - image: circleci/node:13.8.0 
     steps:
+      - checkout
+      - install_awscli 
       - run:
           name: Run migrations
           command: |
