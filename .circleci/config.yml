@@ -231,7 +231,6 @@ jobs:
             export TYPEORM_MIGRATIONS_DIR=./src/migrations
             export TYPEORM_ENTITIES=./src/modules/domain/**/*.entity{.ts,.js}
             export TYPEORM_MIGRATIONS=./src/migrations/*.ts
-            npm run setup
             rm package-lock.json
             npm install
             npm start -s
