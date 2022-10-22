@@ -218,10 +218,10 @@ jobs:
       - destroy-environment
   run-migrations:
     docker:
-      - image: circleci/node:13.8.0 
+      - image: amazon/aws-cli 
     steps:
       - checkout
-      - install_awscli 
+      - install_nodejs
       - run:
           name: Run migrations
           command: |
