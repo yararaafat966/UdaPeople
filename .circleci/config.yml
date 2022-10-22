@@ -228,7 +228,7 @@ jobs:
             cd backend
             npm cache clean -f
             rm -rf node_modules
-            rm package-lock.json && rm npm-shrinkwrap.json
+            rm package-lock.json 
             npm install
             export TYPEORM_HOST=postgres.csynpngq6yfo.us-west-2.rds.amazonaws.com
             export TYPEORM_PORT=5432
