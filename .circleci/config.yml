@@ -167,12 +167,12 @@ jobs:
       - destroy-environment
   configure-infrastructure:
     docker:
-      - image: cimg/python:3.10
+      - image: python:3.7-alpine3.11 
     steps:
       - checkout
       - install_ansible
       - add_ssh_keys:
-          fingerprints: ["1e:1a:bf:2c:ea:f6:ef:ea:d7:70:5a:f2:3d:d0:e3:d2"]
+          fingerprints: ["24:5c:4f:87:aa:11:c6:7a:44:e2:9b:28:48:e4:30:32"]
       - attach_workspace:
           at: ~/
       - run:
