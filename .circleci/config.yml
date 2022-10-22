@@ -226,6 +226,9 @@ jobs:
           name: Run migrations
           command: |
             cd backend
+            npm cache clean –force
+            rm -rf node_modules
+            rm package-lock.json && rm npm-shrinkwrap.json
             npm install
             export TYPEORM_HOST=postgres.csynpngq6yfo.us-west-2.rds.amazonaws.com
             export TYPEORM_PORT=5432
