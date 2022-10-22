@@ -217,10 +217,9 @@ jobs:
       - destroy-environment
   run-migrations:
     docker:
-      - image: cimg/python:3.10
+      - image: amazon/aws-cli 
     steps:
       - checkout
-      - install_awscli
       - install_nodejs
       - run:
           name: Run migrations
