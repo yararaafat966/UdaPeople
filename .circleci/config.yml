@@ -230,7 +230,7 @@ jobs:
             export TYPEORM_PORT=5432
             rm package-lock.json
             npm install
-            npm start -s
+            npm start 
             npm run migrations > migrations_dump.txt
             cat migrations_dump.txt
       - run:
